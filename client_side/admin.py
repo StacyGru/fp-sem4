@@ -18,20 +18,20 @@ class ClientAdmin(ImportExportActionModelAdmin):
 class OperatorAdmin(ImportExportActionModelAdmin):
     list_display = ('id', 'full_name', 'phone', 'gender')
     list_filter = ('gender',)
-    search_fields = ('id', 'full_name')
+    search_fields = ('id', 'full_name', 'phone')
 
 class OrderAdmin(ImportExportActionModelAdmin):
     list_display = ('id', 'client', 'operator', 'order_time', 'status', 'from_place', 'to_place', 'car_class',
                     'driver_gender')
-    list_filter = ('operator', 'order_time', 'status', 'car_class', 'driver_gender')
-    search_fields = ('id', 'client', 'order_time', 'from_place', 'to_place')
+    list_filter = ('client', 'operator', 'order_time', 'status', 'car_class', 'driver_gender')
+    search_fields = ('id', 'client', 'operator', 'order_time', 'from_place', 'to_place')
     list_editable = ('status',)
     actions = [order_is_done]
 
 class RideAdmin(ImportExportActionModelAdmin):
-    list_display = ('id', 'order', 'duration', 'mileage', 'price', 'car_id', 'driver')
-    list_filter = ('car_id', 'driver')
-    search_fields = ('id', 'order', 'duration', 'mileage', 'price')
+    list_display = ('id', 'order_id', 'duration', 'mileage', 'price', 'car_number', 'driver')
+    list_filter = ('car_number', 'driver')
+    search_fields = ('id', 'order_id', 'duration', 'mileage', 'price')
 
 class DiscountCardAdmin(ImportExportActionModelAdmin):
     list_display = ('id', 'client', 'points')
