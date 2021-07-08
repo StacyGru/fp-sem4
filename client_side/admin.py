@@ -29,9 +29,9 @@ class OrderAdmin(ImportExportActionModelAdmin):
     actions = [order_is_done]
 
 class RideAdmin(ImportExportActionModelAdmin):
-    list_display = ('id', 'order', 'duration', 'mileage', 'price', 'car_id', 'driver')
-    list_filter = ('car_id', 'driver')
-    search_fields = ('id', 'order', 'duration', 'mileage', 'price')
+    list_display = ('id', 'order_id', 'duration', 'mileage', 'price', 'car_number', 'driver')
+    list_filter = ('car_number', 'driver')
+    search_fields = ('id', 'order_id', 'duration', 'mileage', 'price')
 
 class DiscountCardAdmin(ImportExportActionModelAdmin):
     list_display = ('id', 'client', 'points')

@@ -53,11 +53,11 @@ class Order(models.Model):
         return str(self.id)
 
 class Ride(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
     duration = models.PositiveIntegerField()
     mileage = models.PositiveIntegerField()
     price = models.PositiveIntegerField()
-    car_id = models.ForeignKey(Car, on_delete=models.CASCADE)
+    car_number = models.ForeignKey(Car, on_delete=models.CASCADE)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.id)

@@ -19,12 +19,12 @@ class ModelDetailAdmin(ImportExportActionModelAdmin):
 
 class CarAdmin(admin.ModelAdmin):
     list_display = ('id', 'brand', 'model_name', 'model_details', 'number', 'color', 'car_class')
-    list_filter = ('brand', 'model_name', 'color', 'car_class')
+    list_filter = ('brand','color', 'car_class')
 
 class CarAdmin(ImportExportActionModelAdmin):
-    list_display = ('id', 'brand', 'model_name', 'model_details', 'number', 'color')
-    list_filter = ('brand', 'model_name', 'color')
-    search_fields = ('id', 'model_details', 'number')
+    list_display = ('id', 'brand', 'model_name', 'model_details', 'number', 'color', 'car_class')
+    list_filter = ('brand', 'color', 'car_class')
+    search_fields = ('id', 'number')
 
 class StreetAdmin(ImportExportActionModelAdmin):
     list_display = ('id', 'street', 'area')
@@ -32,9 +32,9 @@ class StreetAdmin(ImportExportActionModelAdmin):
     search_fields = ('id', 'street')
 
 class AvailableCarAdmin(ImportExportActionModelAdmin):
-    list_display = ('id', 'car_id', 'driver', 'street')
+    list_display = ('id', 'car_number', 'driver', 'street')
     list_filter = ('street',)
-    search_fields = ('id', 'car_id', 'driver')
+    search_fields = ('id', 'car_number', 'driver')
 
 admin.site.register(Driver, DriverAdmin)
 admin.site.register(ModelDetail, ModelDetailAdmin)
