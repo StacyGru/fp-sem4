@@ -44,18 +44,18 @@ class Driver(models.Model):
         return self.full_name
 
 class ModelDetail(models.Model):
+    model = models.CharField(max_length=150)
     gearbox = models.CharField(max_length=15, choices=GEARBOX_MODELDETAIL_CHOICES)
     seats = models.PositiveSmallIntegerField()
-    engine = models.PositiveSmallIntegerField()
+    fuel_volume = models.PositiveSmallIntegerField()
     wheel_side = models.CharField(max_length=15, choices=WHEEL_SIDE_MODELDETAIL_CHOICES)
     child_seat = models.CharField(max_length=15, choices=CHILD_SEAT_MODELDETAIL_CHOICES)
     def __str__(self):
-        return str(self.model_name)
+        return str(self.model)
 
 class Car(models.Model):
     brand = models.CharField(max_length=150)
-    model_name = models.CharField(max_length=150)
-    model_details = models.ForeignKey(ModelDetail, on_delete=models.CASCADE)
+    model = models.ForeignKey(ModelDetail, on_delete=models.CASCADE)
     number = models.CharField(max_length=15)
     color = models.CharField(max_length=50)
     car_class = models.CharField(max_length=15, choices=CAR_CLASS_CAR_CHOICES)

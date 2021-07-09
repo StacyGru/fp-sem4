@@ -24,7 +24,6 @@ class Migration(migrations.Migration):
             name='CarModel',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('model_name', models.CharField(max_length=30)),
                 ('gearbox', models.CharField(max_length=15)),
                 ('body', models.CharField(max_length=15)),
                 ('seats', models.PositiveSmallIntegerField()),

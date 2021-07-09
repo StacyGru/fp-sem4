@@ -13,18 +13,19 @@ class DriverAdmin(ImportExportActionModelAdmin):
 
 class ModelDetailAdmin(ImportExportActionModelAdmin):
 
-    list_display = ('id', 'gearbox', 'seats', 'engine', 'wheel_side')
-    list_filter = ('gearbox', 'engine', 'seats', 'wheel_side')
-    search_fields = ('id',)
+    list_display = ('id', 'model', 'gearbox', 'seats', 'fuel_volume', 'wheel_side', 'child_seat')
+    list_filter = ('seats', 'child_seat')
+    search_fields = ('id', 'model')
 
 class CarAdmin(admin.ModelAdmin):
-    list_display = ('id', 'brand', 'model_name', 'model_details', 'number', 'color', 'car_class')
-    list_filter = ('brand','color', 'car_class')
+    list_display = ('id', 'brand', 'model', 'number', 'color', 'car_class')
+    list_filter = ('brand', 'color', 'car_class')
+    search_fields = ('id', 'model', 'number')
 
 class CarAdmin(ImportExportActionModelAdmin):
-    list_display = ('id', 'brand', 'model_name', 'model_details', 'number', 'color', 'car_class')
+    list_display = ('id', 'brand', 'model', 'number', 'color', 'car_class')
     list_filter = ('brand', 'color', 'car_class')
-    search_fields = ('id', 'number')
+    search_fields = ('id', 'model', 'number')
 
 class StreetAdmin(ImportExportActionModelAdmin):
     list_display = ('id', 'street', 'area')
