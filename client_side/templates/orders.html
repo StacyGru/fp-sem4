@@ -2,13 +2,13 @@
 
 {% block content %}
 
-<h3 class="mt-3 mb-3">Заказы клиента {{ request.user.username }}</h3>
+<h3 class="mt-5 mb-5 text-center">Ваши заказы</h3>
 {% if not orders.count %}
-<div class="col-md-12" style="margin-top: 300px; margin-bottom: 300px;">
+<div class="col-md-12" style="margin-top: 100px; margin-bottom: 100px;">
     <h3>У вас ещё нет заказов :(</h3>
 </div>
 {% else %}
-<div class="col-md-12" style="margin-top: 250px; margin-bottom: 250px;">
+<div class="col-md-12" style="margin-top: 100px; margin-bottom: 100px;">
     <table class="table">
         <thead>
             <th scope="col">Номер заказа</th>

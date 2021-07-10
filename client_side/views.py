@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from .forms import LoginForm
 from django.contrib.auth import authenticate, login
-from .models import Client, Order
+from .models import Client, Order, Ride, DiscountCard
 
 # Create your views here.
 
@@ -26,10 +26,10 @@ class LoginView(View):
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
-                return HttpResponseRedirect('/profile')
+                return HttpResponseRedirect('/orders')
         return render(request, 'login.html', {'form': form})
 
-class ProfileView(View):
+class OrdersView(View):
     def get(self, request, *args, **kwargs):
         client = Client.objects.get(login = request.user.username) # находим в таблице Клиенты клиента, который авторизовался
         # client_id = client.id
@@ -37,6 +37,29 @@ class ProfileView(View):
         orders = Order.objects.filter(client_id=client.id)    
         return render(
             request,
-            'profile.html',
+            'orders.html',
             {'orders': orders}
+        )
+
+class RidesView(View):
+    def get(self, request, *args, **kwargs):
+        client = Client.objects.get(login = request.user.username) # находим в таблице Клиенты клиента, который авторизовался
+        orders = Order.objects.get(client_id=client.id)  # находим в таблице Заказы заказы, у которых client_id = авторизованный_клиент.id
+        # for order in orders:
+        rides = Ride.objects.filter(order_id=orders.id)
+        # rides = Ride.objects.get
+        return render(
+            request,
+            'rides.html',
+            {'rides': rides}
+        )
+
+class DiscountCardView(View):
+    def get(self, request, *args, **kwargs):
+        client = Client.objects.get(login = request.user.username) # находим в таблице Клиенты клиента, который авторизовался
+        discount_card = DiscountCard.objects.get(client_id = client.id)
+        return render(
+            request,
+            'discount_card.html',
+            {'discount_card': discount_card}
         )

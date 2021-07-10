@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="mt-5 mb-5 text-center">Ваши поездки</h3>
+{% if not rides.count %}
+<div class="col-md-12" style="margin-top: 100px; margin-bottom: 100px;">
+    <h3>У вас ещё нет поездок :(</h3>
+</div>
+{% else %}
+<div class="col-md-12" style="margin-top: 100px; margin-bottom: 100px;">
+    <table class="table">
+        <thead>
+            <th scope="col">Номер поездки</th>
+            <th scope="col">Длительность, мин</th>
+            <th scope="col">Расстояние, км</th>
+            <th scope="col">Стоимость, руб</th>
+        </thead>
+        <tbody>
+            {% for ride in rides %}
+                <tr>
+                    <th scope="row">{{ ride.id }}</th>
+                    <td>{{ ride.duration }}</td>
+                    <td>{{ ride.mileage }}</td>
+                    <td>{{ ride.price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endif %}
+{% endblock %}

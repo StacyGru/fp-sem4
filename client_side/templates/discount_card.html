@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="mt-5 mb-5 text-center">Ваша дисконтная карта</h3>
+
+<div class="col-md-12" style="margin-top: 100px; margin-bottom: 100px;">
+    <h5 class="text-center">Количество бонусов: {{ discount_card.points }}</h5>
+</div>
+
+{% endblock %}
