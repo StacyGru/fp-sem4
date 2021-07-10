@@ -7,12 +7,11 @@ from .models import Client, Order, Ride, DiscountCard
 
 # Create your views here.
 
-class BaseView(View):
+class MainView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'base.html', {})
+        return render(request, 'main.html', {})
 
 class LoginView(View):
-
     def get(self, request, *args, **kwargs):
         form = LoginForm(request.POST or None)
         context = {'form': form}
@@ -26,10 +25,23 @@ class LoginView(View):
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
-                return HttpResponseRedirect('/orders')
+                if user.is_superuser:
+                    return HttpResponseRedirect('/administrator')
+                if user.is_staff:
+                    return HttpResponseRedirect('/operator')
+                return HttpResponseRedirect('/client')                     
         return render(request, 'login.html', {'form': form})
 
-class OrdersView(View):
+class ClientView(View):
+    def get(self, request, *args, **kwargs):
+        client = Client.objects.get(login = request.user.username) # находим в таблице Клиенты клиента, который авторизовался
+        return render(
+            request,
+            'main.html',
+            {'client': client}
+        )
+
+class ClientOrdersView(View):
     def get(self, request, *args, **kwargs):
         client = Client.objects.get(login = request.user.username) # находим в таблице Клиенты клиента, который авторизовался
         # client_id = client.id
@@ -37,11 +49,11 @@ class OrdersView(View):
         orders = Order.objects.filter(client_id=client.id)    
         return render(
             request,
-            'orders.html',
+            'client/orders.html',
             {'orders': orders}
         )
 
-class RidesView(View):
+class ClientRidesView(View):
     def get(self, request, *args, **kwargs):
         client = Client.objects.get(login = request.user.username) # находим в таблице Клиенты клиента, который авторизовался
         orders = Order.objects.get(client_id=client.id)  # находим в таблице Заказы заказы, у которых client_id = авторизованный_клиент.id
@@ -50,16 +62,32 @@ class RidesView(View):
         # rides = Ride.objects.get
         return render(
             request,
-            'rides.html',
+            'client/rides.html',
             {'rides': rides}
         )
 
-class DiscountCardView(View):
+class ClientDiscountCardView(View):
     def get(self, request, *args, **kwargs):
         client = Client.objects.get(login = request.user.username) # находим в таблице Клиенты клиента, который авторизовался
         discount_card = DiscountCard.objects.get(client_id = client.id)
         return render(
             request,
-            'discount_card.html',
+            'client/discount_card.html',
             {'discount_card': discount_card}
+        )
+
+class OperatorView(View):
+    def get(self, request, *args, **kwargs):
+        return render(
+            request,
+            'operator.html',
+            {}
+        )
+
+class AdministratorView(View):
+    def get(self, request, *args, **kwargs):
+        return render(
+            request,
+            'administrator.html',
+            {}
         )
