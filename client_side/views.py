@@ -31,8 +31,10 @@ class LoginView(View):
 
 class ProfileView(View):
     def get(self, request, *args, **kwargs):
-        client = Client.objects.get(pk = request.user.pk)
-        orders = Order.objects.filter(client=client)
+        client = Client.objects.get(login = request.user.username) # находим в таблице Клиенты клиента, который авторизовался
+        # client_id = client.id
+        # client_id - id авторизовавшегося клиента
+        orders = Order.objects.filter(client_id=client.id)    
         return render(
             request,
             'profile.html',
