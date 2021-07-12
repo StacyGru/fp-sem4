@@ -2,36 +2,37 @@
 
 {% block content %}
 
-<h3 class="mt-5 mb-5 text-center">Ваши заказы</h3>
-{% if not orders.count %}
-<div class="col-md-12 mt-5 mb-5">
-    <h3>У вас ещё нет заказов :(</h3>
-</div>
-{% else %}
-<div class="col-md-12 table-responsive mt-5 mb-5">
+<h3 class="mt-5 mb-5 text-center">Заказы</h3>
+
+<div class="col-md-12 mt-5 mb-5 table-responsive">
     <table class="table">
         <thead>
-            <th scope="col">Номер заказа</th>
+            <th scope="col">id</th>
+            <th scope="col">Клиент</th>
+            <th scope="col">Оператор</th>
             <th scope="col">Время заказа</th>
             <th scope="col">Статус</th>
             <th scope="col">Откуда</th>
             <th scope="col">Куда</th>
             <th scope="col">Класс поездки</th>
+            <th scope="col">Пол водителя</th>
         </thead>
         <tbody>
             {% for order in orders %}
                 <tr>
                     <th scope="row">{{ order.id }}</th>
+                    <td>{{ order.client }}</td>
+                    <td>{{ order.operator }}</td>
                     <td>{{ order.order_time }}</td>
                     <td>{{ order.status }}</td>
                     <td>{{ order.from_place }}</td>
                     <td>{{ order.to_place }}</td>
                     <td>{{ order.car_class }}</td>
+                    <td>{{ order.driver_gender }}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
 
-{% endif %}
 {% endblock %}

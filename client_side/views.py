@@ -1,11 +1,20 @@
-from django.http.response import HttpResponse, HttpResponseRedirect
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import View
 from .forms import LoginForm
 from django.contrib.auth import authenticate, login
-from .models import Client, Order, Ride, DiscountCard
 
-# Create your views here.
+from .models import (
+    Client, 
+    Order, 
+    Ride, 
+    DiscountCard,
+    Operator
+)
+from driver_side.models import (
+    AvailableCar,
+
+)
 
 class MainView(View):
     def get(self, request, *args, **kwargs):
@@ -32,6 +41,10 @@ class LoginView(View):
                 return HttpResponseRedirect('/client')                     
         return render(request, 'login.html', {'form': form})
 
+
+
+# 3 ТИПА ПОЛЬЗОВАТЕЛЕЙ
+
 class ClientView(View):
     def get(self, request, *args, **kwargs):
         client = Client.objects.get(login = request.user.username) # находим в таблице Клиенты клиента, который авторизовался
@@ -40,6 +53,26 @@ class ClientView(View):
             'main.html',
             {'client': client}
         )
+
+class OperatorView(View):
+    def get(self, request, *args, **kwargs):
+        return render(
+            request,
+            'operator.html',
+            {}
+        )
+
+class AdministratorView(View):
+    def get(self, request, *args, **kwargs):
+        return render(
+            request,
+            'administrator.html',
+            {}
+        )
+
+
+
+# ДЛЯ КЛИЕНТА
 
 class ClientOrdersView(View):
     def get(self, request, *args, **kwargs):
@@ -76,18 +109,51 @@ class ClientDiscountCardView(View):
             {'discount_card': discount_card}
         )
 
-class OperatorView(View):
+
+
+# ДЛЯ ОПЕРАТОРА
+
+class OperatorClientsView(View):
     def get(self, request, *args, **kwargs):
+        clients = Client.objects.all()
         return render(
             request,
-            'operator.html',
-            {}
+            'operator/clients.html',
+            {'clients': clients}
         )
 
-class AdministratorView(View):
+class OperatorOrdersView(View):
     def get(self, request, *args, **kwargs):
+        orders = Order.objects.all()
         return render(
             request,
-            'administrator.html',
-            {}
+            'operator/orders.html',
+            {'orders': orders}
+        )
+
+class OperatorRidesView(View):
+    def get(self, request, *args, **kwargs):
+        rides = Ride.objects.all()
+        return render(
+            request,
+            'operator/rides.html',
+            {'rides': rides}
+        )
+
+class OperatorAvailableCarsView(View):
+    def get(self, request, *args, **kwargs):
+        available_cars = AvailableCar.objects.all()
+        return render(
+            request,
+            'operator/available_cars.html',
+            {'available_cars': available_cars}
+        )
+
+class OperatorDiscountCardsView(View):
+    def get(self, request, *args, **kwargs):
+        discount_cards = DiscountCard.objects.all()
+        return render(
+            request,
+            'operator/discount_cards.html',
+            {'discount_cards': discount_cards}
         )

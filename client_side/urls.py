@@ -1,4 +1,4 @@
-from .views import(
+from .views import (
     MainView,
 
     LoginView,
@@ -11,11 +11,11 @@ from .views import(
     ClientRidesView,
     ClientDiscountCardView,
 
-    # OperatorClientsView,
-    # OperatorOrdersView,
-    # OperatorRidesView,
-    # OperatorAvailableCarsView,
-    # OperatorDiscountCardsView,
+    OperatorClientsView,
+    OperatorOrdersView,
+    OperatorRidesView,
+    OperatorAvailableCarsView,
+    OperatorDiscountCardsView,
 
     # AdministratorCarsView,
     # AdministratorDriversView,
@@ -40,11 +40,11 @@ urlpatterns = [
     path('client/rides/', ClientRidesView.as_view(), name='client/rides'), # (этого не будет, это будет отобр. в заказах через join)
     path('client/discount_card/', ClientDiscountCardView.as_view(), name='client/discount_card'), # (этого тоже не будет - отобр. строкой в дашбоарде)
 
-    # path('operator/clients/', OperatorClientsView.as_view(), name='operator/clients'),
-    # path('operator/orders/', OperatorOrdersView.as_view(), name='operator/orders'),
-    # path('operator/rides/', OperatorRidesView.as_view(), name='operator/rides'),
-    # path('operator/available_cars/', OperatorAvailableCarsView.as_view(), name='operator/available_cars'),
-    # path('operator/discount_cards/', OperatorDiscountCardsView.as_view(), name='operator/discount_cards'),
+    path('operator/clients/', OperatorClientsView.as_view(), name='operator/clients'),
+    path('operator/orders/', OperatorOrdersView.as_view(), name='operator/orders'),
+    path('operator/rides/', OperatorRidesView.as_view(), name='operator/rides'),
+    path('operator/available_cars/', OperatorAvailableCarsView.as_view(), name='operator/available_cars'),
+    path('operator/discount_cards/', OperatorDiscountCardsView.as_view(), name='operator/discount_cards'),
 
     # path('administrator/cars/', AdministratorCarsView.as_view(), name='administrator/cars'),
     # path('administrator/drivers/', AdministratorDriversView.as_view(), name='administrator/drivers'),

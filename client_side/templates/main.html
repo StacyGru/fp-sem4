@@ -36,11 +36,11 @@
                         </li>
 
                         {% elif request.user.is_staff %}
-                        <li class="nav-item"><a class="nav-link" href="#">Клиенты</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Заказы</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Поездки</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Доступные машины</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Дисконтные карты</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'operator/clients' %}">Клиенты</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'operator/orders' %}">Заказы</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'operator/rides' %}">Поездки</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'operator/available_cars' %}">Доступные машины</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'operator/discount_cards' %}">Дисконтные карты</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Оператор</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

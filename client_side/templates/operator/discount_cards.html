@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h3 class="mt-5 mb-5 text-center">Дисконтные карты</h3>
+
+<div class="col-md-12 mt-5 mb-5 table-responsive">
+    <table class="table">
+        <thead>
+            <th scope="col">id</th>
+            <th scope="col">Клиент</th>
+            <th scope="col">Кол-во бонусов</th>
+        </thead>
+        <tbody>
+            {% for discount_card in discount_cards %}
+                <tr>
+                    <th scope="row">{{ discount_card.id }}</th>
+                    <td>{{ discount_card.client }}</td>
+                    <td>{{ discount_card.points }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
