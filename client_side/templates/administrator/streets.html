@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h3 class="mt-5 mb-5 text-center">Улицы</h3>
+
+<div class="col-md-12 mt-5 mb-5 table-responsive">
+    <table class="table">
+        <thead>
+            <th scope="col">id</th>
+            <th scope="col">Улица</th>
+            <th scope="col">Район</th>
+        </thead>
+        <tbody>
+            {% for street in streets %}
+                <tr>
+                    <th scope="row">{{ street.id }}</th>
+                    <td>{{ street.street }}</td>
+                    <td>{{ street.area }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

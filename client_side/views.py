@@ -13,7 +13,10 @@ from .models import (
 )
 from driver_side.models import (
     AvailableCar,
-
+    Car,
+    ModelDetail,
+    Driver,
+    Street
 )
 
 class MainView(View):
@@ -156,4 +159,53 @@ class OperatorDiscountCardsView(View):
             request,
             'operator/discount_cards.html',
             {'discount_cards': discount_cards}
+        )
+
+
+
+# ДЛЯ ОПЕРАТОРА
+
+class AdministratorCarsView(View):
+    def get(self, request, *args, **kwargs):
+        cars = Car.objects.all()
+        return render(
+            request,
+            'administrator/cars.html',
+            {'cars': cars}
+        )
+
+class AdministratorDriversView(View):
+    def get(self, request, *args, **kwargs):
+        drivers = Driver.objects.all()
+        return render(
+            request,
+            'administrator/drivers.html',
+            {'drivers': drivers}
+        )
+
+class AdministratorModelsDetailsView(View):
+    def get(self, request, *args, **kwargs):
+        models_details = ModelDetail.objects.all()
+        return render(
+            request,
+            'administrator/models_details.html',
+            {'models_details': models_details}
+        )
+
+class AdministratorStreetsView(View):
+    def get(self, request, *args, **kwargs):
+        streets = Street.objects.all()
+        return render(
+            request,
+            'administrator/streets.html',
+            {'streets': streets}
+        )
+
+class AdministratorOperatorsView(View):
+    def get(self, request, *args, **kwargs):
+        operators = Operator.objects.all()
+        return render(
+            request,
+            'administrator/operators.html',
+            {'operators': operators}
         )

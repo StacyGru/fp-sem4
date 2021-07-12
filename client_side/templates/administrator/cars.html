@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h3 class="mt-5 mb-5 text-center">Машины</h3>
+
+<div class="col-md-12 mt-5 mb-5 table-responsive">
+    <table class="table">
+        <thead>
+            <th scope="col">id</th>
+            <th scope="col">Бренд</th>
+            <th scope="col">Модель</th>
+            <th scope="col">Номер</th>
+            <th scope="col">Цвет</th>
+            <th scope="col">Класс поездки</th>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+                <tr>
+                    <th scope="row">{{ car.id }}</th>
+                    <td>{{ car.brand }}</td>
+                    <td>{{ car.model }}</td>
+                    <td>{{ car.number }}</td>
+                    <td>{{ car.color }}</td>
+                    <td>{{ car.car_class }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

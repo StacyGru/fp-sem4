@@ -23,11 +23,11 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                         {% if request.user.is_superuser %}
-                        <li class="nav-item"><a class="nav-link" href="#">Машины</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Водители</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Модели машин</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Улицы</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Операторы</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'administrator/cars' %}">Машины</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'administrator/drivers' %}">Водители</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'administrator/models_details' %}">Модели машин</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'administrator/streets' %}">Улицы</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'administrator/operators' %}">Операторы</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Администратор</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

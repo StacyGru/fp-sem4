@@ -17,11 +17,11 @@ from .views import (
     OperatorAvailableCarsView,
     OperatorDiscountCardsView,
 
-    # AdministratorCarsView,
-    # AdministratorDriversView,
-    # AdministratorModelsDetailsView,
-    # AdministratorStreetsView,
-    # AdministratorOperatorsView
+    AdministratorCarsView,
+    AdministratorDriversView,
+    AdministratorModelsDetailsView,
+    AdministratorStreetsView,
+    AdministratorOperatorsView
 )
 from django.urls import path
 from django.contrib.auth.views import LogoutView
@@ -46,9 +46,9 @@ urlpatterns = [
     path('operator/available_cars/', OperatorAvailableCarsView.as_view(), name='operator/available_cars'),
     path('operator/discount_cards/', OperatorDiscountCardsView.as_view(), name='operator/discount_cards'),
 
-    # path('administrator/cars/', AdministratorCarsView.as_view(), name='administrator/cars'),
-    # path('administrator/drivers/', AdministratorDriversView.as_view(), name='administrator/drivers'),
-    # path('administrator/models_details/', AdministratorModelsDetailsView.as_view(), name='administrator/models_details'),
-    # path('administrator/streets/', AdministratorStreetsView.as_view(), name='administrator/streets'),
-    # path('administrator/operators/', AdministratorOperatorsView.as_view(), name='administrator/operators'),
+    path('administrator/cars/', AdministratorCarsView.as_view(), name='administrator/cars'),
+    path('administrator/drivers/', AdministratorDriversView.as_view(), name='administrator/drivers'),
+    path('administrator/models_details/', AdministratorModelsDetailsView.as_view(), name='administrator/models_details'),
+    path('administrator/streets/', AdministratorStreetsView.as_view(), name='administrator/streets'),
+    path('administrator/operators/', AdministratorOperatorsView.as_view(), name='administrator/operators'),
 ]
