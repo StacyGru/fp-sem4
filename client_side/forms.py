@@ -1,5 +1,20 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.forms import widgets
+from .models import (
+    Client, 
+    Order, 
+    Ride, 
+    DiscountCard,
+    Operator
+)
+from driver_side.models import (
+    AvailableCar,
+    Car,
+    ModelDetail,
+    Driver,
+    Street
+)
 
 class LoginForm(forms.ModelForm):
 
@@ -27,3 +42,19 @@ class LoginForm(forms.ModelForm):
         help_texts = {
             'username': None,
         }
+
+class AddClientForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+    phone = forms.IntegerField()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['full_name'].label = 'ФИО'
+        self.fields['phone'].label = 'Телефон'
+        self.fields['gender'].label = 'Пол'
+        self.fields['login'].label = 'Логин'
+        self.fields['password'].label = 'Пароль'
+    
+    class Meta:
+        model = Client
+        fields = ['full_name', 'phone', 'gender', 'login', 'password']

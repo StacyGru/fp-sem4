@@ -1,7 +1,12 @@
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import View
-from .forms import LoginForm
+from django.contrib import messages
+from django.db import transaction
+from .forms import (
+    LoginForm,
+    AddClientForm
+)
 from django.contrib.auth import authenticate, login
 
 from .models import (
@@ -119,11 +124,38 @@ class ClientDiscountCardView(View):
 class OperatorClientsView(View):
     def get(self, request, *args, **kwargs):
         clients = Client.objects.all()
+        form = AddClientForm(request.POST or None)
         return render(
             request,
             'operator/clients.html',
-            {'clients': clients}
+            {
+                'clients': clients,
+                'form': form
+            }
         )
+        
+    @transaction.atomic
+    def post(self, request, *args, **kwargs):
+        form = AddClientForm(request.POST or None)
+        if form.is_valid():
+            new_client = form.save(commit=False)
+            new_client.full_name = form.cleaned_data['full_name']
+            new_client.phone = form.cleaned_data['phone']
+            new_client.gender = form.cleaned_data['gender']
+            new_client.login = form.cleaned_data['login']
+            new_client.password = form.cleaned_data['password']
+            new_client.save()
+            messages.add_message(request, messages.INFO, 'Клиент успешно добавлен!')
+            return HttpResponseRedirect('/operator/clients')
+        messages.add_message(request, messages.ERROR, 'Не удалось добавить клиента!')
+        return HttpResponseRedirect('/operator/clients')
+
+    # def delete(self, request, *args, **kwargs):
+    #     delete_client = 
+    #         messages.add_message(request, messages.INFO, 'Клиент успешно добавлен!')
+    #         return HttpResponseRedirect('/operator/clients')
+    #     messages.add_message(request, messages.ERROR, 'Не удалось добавить клиента!')
+    #     return HttpResponseRedirect('/operator/clients')
 
 class OperatorOrdersView(View):
     def get(self, request, *args, **kwargs):

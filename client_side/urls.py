@@ -41,6 +41,7 @@ urlpatterns = [
     path('client/discount_card/', ClientDiscountCardView.as_view(), name='client/discount_card'), # (этого тоже не будет - отобр. строкой в дашбоарде)
 
     path('operator/clients/', OperatorClientsView.as_view(), name='operator/clients'),
+    # path('operator/clients/delete/', OperatorClientsView.as_view(), name='operator/clients/delete/')
     path('operator/orders/', OperatorOrdersView.as_view(), name='operator/orders'),
     path('operator/rides/', OperatorRidesView.as_view(), name='operator/rides'),
     path('operator/available_cars/', OperatorAvailableCarsView.as_view(), name='operator/available_cars'),
