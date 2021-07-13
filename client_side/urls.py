@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 from rest_framework import routers
 from .api import ClientViewSet, OperatorViewSet, OrderViewSet, RideViewSet, DiscountCardViewSet
 from driver_side.api import DriverViewSet, ModelDetailViewSet, CarViewSet, StreetViewSet, AvailableCarViewSet
@@ -20,6 +21,8 @@ urlpatterns = router.urls
 =======
 =======
 >>>>>>> master
+=======
+>>>>>>> d3086e3... Удаление не работает
 =======
 >>>>>>> d3086e3... Удаление не работает
 # from . import views
@@ -82,11 +85,15 @@ urlpatterns = [
     path('operator/clients/<str:pk>', views.EditClient, name='edit_client')
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ]
 >>>>>>> d3086e3... Удаление не работает
 =======
 ]
 >>>>>>> master
+=======
+]
+>>>>>>> d3086e3... Удаление не работает
 =======
 ]
 >>>>>>> d3086e3... Удаление не работает
