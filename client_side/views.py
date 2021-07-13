@@ -1,13 +1,17 @@
+from django.db.models.base import Model
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic import View
 from django.contrib import messages
 from django.db import transaction
+from django.contrib.auth import authenticate, login
+
+# from .mixins import DeleteMixin
+
 from .forms import (
     LoginForm,
-    AddClientForm
+    ClientForm
 )
-from django.contrib.auth import authenticate, login
 
 from .models import (
     Client, 
@@ -124,7 +128,7 @@ class ClientDiscountCardView(View):
 class OperatorClientsView(View):
     def get(self, request, *args, **kwargs):
         clients = Client.objects.all()
-        form = AddClientForm(request.POST or None)
+        form = ClientForm(request.POST or None)
         return render(
             request,
             'operator/clients.html',
@@ -136,7 +140,7 @@ class OperatorClientsView(View):
         
     @transaction.atomic
     def post(self, request, *args, **kwargs):
-        form = AddClientForm(request.POST or None)
+        form = ClientForm(request.POST or None)
         if form.is_valid():
             new_client = form.save(commit=False)
             new_client.full_name = form.cleaned_data['full_name']
@@ -149,13 +153,6 @@ class OperatorClientsView(View):
             return HttpResponseRedirect('/operator/clients')
         messages.add_message(request, messages.ERROR, 'Не удалось добавить клиента!')
         return HttpResponseRedirect('/operator/clients')
-
-    # def delete(self, request, *args, **kwargs):
-    #     delete_client = 
-    #         messages.add_message(request, messages.INFO, 'Клиент успешно добавлен!')
-    #         return HttpResponseRedirect('/operator/clients')
-    #     messages.add_message(request, messages.ERROR, 'Не удалось добавить клиента!')
-    #     return HttpResponseRedirect('/operator/clients')
 
 class OperatorOrdersView(View):
     def get(self, request, *args, **kwargs):
@@ -241,3 +238,21 @@ class AdministratorOperatorsView(View):
             'administrator/operators.html',
             {'operators': operators}
         )
+
+# def deleteItem(request, pk):
+#     order = Order.objects.get(id=pk)
+#     return render(request, 'operator/clients/#delete', {'item': order})
+
+def EditClient(request, pk):
+    client = Client.objects.get(id=pk)
+    if request.method == 'POST':
+        client.delete()
+        return HttpResponseRedirect('/operator/clients')
+
+# def EditClient(request, pk):
+#     client = Client.objects.get(id=pk)
+# 	if request.method == "POST":
+# 		order.delete()
+# 		return redirect('/')
+# 	context = {'item':order}
+# 	return render(request, 'accounts/delete.html', context)

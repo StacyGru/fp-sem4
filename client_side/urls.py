@@ -1,3 +1,4 @@
+# from . import views
 from .views import (
     MainView,
 
@@ -26,6 +27,8 @@ from .views import (
 from django.urls import path
 from django.contrib.auth.views import LogoutView
 
+from client_side import views
+
 urlpatterns = [
     path('', MainView.as_view(), name='main'), # главная страница: отображается только если никто не авторизован
 
@@ -41,7 +44,6 @@ urlpatterns = [
     path('client/discount_card/', ClientDiscountCardView.as_view(), name='client/discount_card'), # (этого тоже не будет - отобр. строкой в дашбоарде)
 
     path('operator/clients/', OperatorClientsView.as_view(), name='operator/clients'),
-    # path('operator/clients/delete/', OperatorClientsView.as_view(), name='operator/clients/delete/')
     path('operator/orders/', OperatorOrdersView.as_view(), name='operator/orders'),
     path('operator/rides/', OperatorRidesView.as_view(), name='operator/rides'),
     path('operator/available_cars/', OperatorAvailableCarsView.as_view(), name='operator/available_cars'),
@@ -52,4 +54,6 @@ urlpatterns = [
     path('administrator/models_details/', AdministratorModelsDetailsView.as_view(), name='administrator/models_details'),
     path('administrator/streets/', AdministratorStreetsView.as_view(), name='administrator/streets'),
     path('administrator/operators/', AdministratorOperatorsView.as_view(), name='administrator/operators'),
+
+    path('operator/clients/<str:pk>', views.EditClient, name='edit_client')
 ]

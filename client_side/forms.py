@@ -16,6 +16,7 @@ from driver_side.models import (
     Street
 )
 
+# ФОРМА АВТОРИЗАЦИИ
 class LoginForm(forms.ModelForm):
 
     password = forms.CharField(widget=forms.PasswordInput)
@@ -43,7 +44,8 @@ class LoginForm(forms.ModelForm):
             'username': None,
         }
 
-class AddClientForm(forms.ModelForm):
+# ФОРМЫ ДЛЯ 10 ТАБЛИЦ (ДЛЯ ДОБАВЛЕНИЯ И РЕДАКТИРОВАНИЯ ФОРМЫ БУДУТ ОДИНАКОВЫЕ)
+class ClientForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     phone = forms.IntegerField()
 
