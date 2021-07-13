@@ -1,0 +1,98 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h3 class="mt-5 mb-5 text-center">Клиенты</h3>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="col-md-12 mt-5 mb-5 table-responsive">
+    <table class="table">
+        <thead>
+            <th scope="col">id</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">Телефон</th>
+            <th scope="col">Пол</th>
+            <th scope="col">*edit*</th> 
+            <th scope="col">*delete*</th>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+                <tr>
+                    <th scope="row">{{ client.id }}</th>
+                    <td>{{ client.full_name }}</td>
+                    <td>{{ client.phone }}</td>
+                    <td>{{ client.gender }}</td>
+                    <td>
+                        <a type="button" class="btn btn-warning m-3" href="/{{ client.id }}">Редактировать</a>
+                    </td>
+                    <td>
+                        <form action="{% url 'operator/clients' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-danger m-3" data-toggle="modal" data-target="#delete" name="{{ client.id }}" value="Удалить">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-success m-3" data-toggle="modal" data-target="#add">
+        Добавить...
+      </button>
+</div>
+
+<!-- ДОБАВЛЕНИЕ -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Добавить клиента</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="" method="POST">
+        <div class="modal-body">
+            {% csrf_token %}
+            {{ form|crispy }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+          <input type="submit" class="btn btn-primary" value="Добавить">
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<!-- УДАЛЕНИЕ
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Удалить клиента</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <form action="{% url 'operator/clients' %}" method="POST">
+        <div class="modal-body">
+            {% csrf_token %}
+            Вы уверены?
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+          <input type="submit" class="btn btn-danger" value="Удалить">
+        </div>
+        </form>
+      </div>
+    </div>
+  </div> -->
+
+{% endblock %}
