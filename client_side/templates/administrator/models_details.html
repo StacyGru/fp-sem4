@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h3 class="mt-5 mb-5 text-center">Модели машин</h3>
+
+<div class="col-md-12 mt-5 mb-5 table-responsive">
+    <table class="table">
+        <thead>
+            <th scope="col">id</th>
+            <th scope="col">Модель</th>
+            <th scope="col">Коробка передач</th>
+            <th scope="col">Кол-во сидений</th>
+            <th scope="col">Объём бака</th>
+            <th scope="col">Сторона руля</th>
+            <th scope="col">Детское кресло</th>
+        </thead>
+        <tbody>
+            {% for model_detail in models_details %}
+                <tr>
+                    <th scope="row">{{ model_detail.id }}</th>
+                    <td>{{ model_detail.model }}</td>
+                    <td>{{ model_detail.gearbox }}</td>
+                    <td>{{ model_detail.seats }}</td>
+                    <td>{{ model_detail.fuel_volume }}</td>
+                    <td>{{ model_detail.wheel_side }}</td>
+                    <td>{{ model_detail.child_seat }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

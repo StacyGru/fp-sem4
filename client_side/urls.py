@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 from rest_framework import routers
 from .api import ClientViewSet, OperatorViewSet, OrderViewSet, RideViewSet, DiscountCardViewSet
 from driver_side.api import DriverViewSet, ModelDetailViewSet, CarViewSet, StreetViewSet, AvailableCarViewSet
@@ -16,6 +17,8 @@ router.register('api/streets', StreetViewSet, 'streets')
 router.register('api/availablecars', AvailableCarViewSet, 'availablecars')
 urlpatterns = router.urls
 =======
+=======
+>>>>>>> master
 # from . import views
 from .views import (
     MainView,
@@ -74,5 +77,9 @@ urlpatterns = [
     path('administrator/operators/', AdministratorOperatorsView.as_view(), name='administrator/operators'),
 
     path('operator/clients/<str:pk>', views.EditClient, name='edit_client')
+<<<<<<< HEAD
 ]
 >>>>>>> d3086e3... Удаление не работает
+=======
+]
+>>>>>>> master

@@ -43,8 +43,11 @@ INSTALLED_APPS = [
     'client_side',
     'driver_side',
     'rest_framework',
-    'import_export'
+    'import_export',
+    'crispy_forms'
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

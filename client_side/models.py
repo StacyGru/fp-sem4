@@ -4,8 +4,6 @@ from driver_side.models import Car
 from driver_side.models import Driver
 from driver_side.models import Street
 
-# Create your models here.
-
 GENDER_CLIENT_CHOICES = [
     ('Ж', 'женский'),
     ('М', 'мужской')

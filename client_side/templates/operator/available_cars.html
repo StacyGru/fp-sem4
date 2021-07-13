@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h3 class="mt-5 mb-5 text-center">Доступные машины</h3>
+
+<div class="col-md-12 mt-5 mb-5 table-responsive">
+    <table class="table">
+        <thead>
+            <th scope="col">id</th>
+            <th scope="col">Номер машины</th>
+            <th scope="col">Водитель</th>
+            <th scope="col">Улица</th>
+        </thead>
+        <tbody>
+            {% for available_car in available_cars %}
+                <tr>
+                    <th scope="row">{{ available_car.id }}</th>
+                    <td>{{ available_car.car_number }}</td>
+                    <td>{{ available_car.driver }}</td>
+                    <td>{{ available_car.street }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

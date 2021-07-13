@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 from django.shortcuts import render
 
 # Create your views here.
@@ -11,6 +12,16 @@ from django.contrib import messages
 from django.db import transaction
 from django.contrib.auth import authenticate, login
 
+=======
+from django.db.models.base import Model
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import redirect, render
+from django.views.generic import View
+from django.contrib import messages
+from django.db import transaction
+from django.contrib.auth import authenticate, login
+
+>>>>>>> master
 # from .mixins import DeleteMixin
 
 from .forms import (
@@ -261,4 +272,7 @@ def EditClient(request, pk):
 # 		return redirect('/')
 # 	context = {'item':order}
 # 	return render(request, 'accounts/delete.html', context)
+<<<<<<< HEAD
 >>>>>>> d3086e3... Удаление не работает
+=======
+>>>>>>> master

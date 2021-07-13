@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h3 class="mt-5 mb-5 text-center">Операторы</h3>
+
+<div class="col-md-12 mt-5 mb-5 table-responsive">
+    <table class="table">
+        <thead>
+            <th scope="col">id</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">Телефон</th>
+            <th scope="col">Пол</th>
+        </thead>
+        <tbody>
+            {% for operator in operators %}
+                <tr>
+                    <th scope="row">{{ operator.id }}</th>
+                    <td>{{ operator.full_name }}</td>
+                    <td>{{ operator.phone }}</td>
+                    <td>{{ operator.gender }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
