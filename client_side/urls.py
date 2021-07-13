@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 from rest_framework import routers
 from .api import ClientViewSet, OperatorViewSet, OrderViewSet, RideViewSet, DiscountCardViewSet
 from driver_side.api import DriverViewSet, ModelDetailViewSet, CarViewSet, StreetViewSet, AvailableCarViewSet
@@ -21,6 +22,8 @@ urlpatterns = router.urls
 =======
 =======
 >>>>>>> master
+=======
+>>>>>>> d3086e3... Удаление не работает
 =======
 >>>>>>> d3086e3... Удаление не работает
 =======
@@ -86,11 +89,15 @@ urlpatterns = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ]
 >>>>>>> d3086e3... Удаление не работает
 =======
 ]
 >>>>>>> master
+=======
+]
+>>>>>>> d3086e3... Удаление не работает
 =======
 ]
 >>>>>>> d3086e3... Удаление не работает

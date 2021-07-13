@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 from django.shortcuts import render
 
 # Create your views here.
@@ -19,6 +20,8 @@ from django.contrib.auth import authenticate, login
 >>>>>>> d3086e3... Удаление не работает
 =======
 >>>>>>> d3086e3... Удаление не работает
+=======
+>>>>>>> d3086e3... Удаление не работает
 from django.db.models.base import Model
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -29,7 +32,10 @@ from django.contrib.auth import authenticate, login
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> d3086e3... Удаление не работает
 =======
 >>>>>>> d3086e3... Удаление не работает
 =======
@@ -287,9 +293,12 @@ def EditClient(request, pk):
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> d3086e3... Удаление не работает
 =======
 >>>>>>> master
+=======
+>>>>>>> d3086e3... Удаление не работает
 =======
 >>>>>>> d3086e3... Удаление не работает
 =======
