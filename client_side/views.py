@@ -57,10 +57,17 @@ class LoginView(View):
 class ClientView(View):
     def get(self, request, *args, **kwargs):
         client = Client.objects.get(login = request.user.username) # находим в таблице Клиенты клиента, который авторизовался
+        orders = Order.objects.filter(client_id=client.id)
+        discount_card = DiscountCard.objects.get(client_id = client.id)
+        count_orders = orders.count()
         return render(
             request,
-            'main.html',
-            {'client': client}
+            'client.html',
+            {
+                'client': client,
+                'count_orders': count_orders,
+                'discount_card': discount_card
+            }
         )
 
 class OperatorView(View):

@@ -51,12 +51,12 @@
                         </li>
                        
                         {% elif request.user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'client/orders' %}">Заказы</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'client/rides' %}">Поездки</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Клиент: {{ request.user.username }}</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{% url 'client/orders' %}">Заказы</a></li>
-                                <li><a class="dropdown-item" href="{% url 'client/rides' %}">Поездки</a></li>
-                                <li><a class="dropdown-item" href="{% url 'client/discount_card' %}">Дисконтная карта</a></li>
+                                <li><a class="dropdown-item" href="/client">Профиль</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Выход</a></li>
                             </ul>
