@@ -44,7 +44,7 @@ class LoginForm(forms.ModelForm):
         }
 
 class AddClientForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
+    # password = forms.CharField(widget=forms.PasswordInput)
     phone = forms.IntegerField()
 
     def __init__(self, *args, **kwargs):

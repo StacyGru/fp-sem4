@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h3 class="mt-5 mb-5 text-center">Редактировать клиента</h3>
+
+<form action="" method="POST" class="mt-5 mb-5">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" class="btn btn-primary mt-3" value="Сохранить">
+</form>
+
+{% endblock %}

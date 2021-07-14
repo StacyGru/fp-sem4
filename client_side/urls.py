@@ -1,3 +1,4 @@
+from . import views
 from .views import (
     MainView,
 
@@ -41,7 +42,9 @@ urlpatterns = [
     path('client/discount_card/', ClientDiscountCardView.as_view(), name='client/discount_card'), # (этого тоже не будет - отобр. строкой в дашбоарде)
 
     path('operator/clients/', OperatorClientsView.as_view(), name='operator/clients'),
-    # path('operator/clients/delete/', OperatorClientsView.as_view(), name='operator/clients/delete/')
+    path('operator/clients/<str:pk>/', views.get_client),
+    path('operator/clients/edit_client/<str:pk>/', views.edit_client, name='edit_client'),
+    path('operator/clients/delete_client/<str:pk>/', views.delete_client, name='delete_client'),
     path('operator/orders/', OperatorOrdersView.as_view(), name='operator/orders'),
     path('operator/rides/', OperatorRidesView.as_view(), name='operator/rides'),
     path('operator/available_cars/', OperatorAvailableCarsView.as_view(), name='operator/available_cars'),

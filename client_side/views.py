@@ -1,3 +1,4 @@
+from django.forms.forms import Form
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import View
@@ -241,3 +242,47 @@ class AdministratorOperatorsView(View):
             'administrator/operators.html',
             {'operators': operators}
         )
+
+# CRUD ДЛЯ ТАБЛИЦЫ КЛИЕНТЫ
+def get_client(request, pk):
+    client = Client.objects.get(id=pk)
+    return render(
+            request,
+            'operator/clients.html',
+            {
+                'client': client
+            }
+        )
+
+def edit_client(request, pk):
+    client = Client.objects.get(id=pk)
+    form = AddClientForm(instance=client)
+    if request.method == 'POST':
+        form = AddClientForm(request.POST, instance=client)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.INFO, 'Клиент успешно изменён!')
+            return HttpResponseRedirect('/operator/clients')
+        messages.add_message(request, messages.ERROR, 'Не удалось изменить клиента!')
+    return render(
+        request,
+        'operator/edit_client.html',
+        {
+            'client': client,
+            'form': form    
+        }
+    )
+
+def delete_client(request, pk):
+    client = Client.objects.get(id=pk)
+    if request.method == 'POST':
+        client.delete()
+        messages.add_message(request, messages.INFO, 'Клиент успешно удалён!')
+        return HttpResponseRedirect('/operator/clients')
+    return render(
+        request,
+        'operator/delete_client.html',
+        {
+            'client': client  
+        }
+    )
